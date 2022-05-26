@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TodoList extends StatefulWidget {
   const TodoList({Key? key}) : super(key: key);
@@ -67,10 +68,9 @@ class _TodoListState extends State<TodoList> {
             children: [
               Text(
                 'Vai te ocupar!',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
+                style: GoogleFonts.fugazOne(
                   color: Colors.white,
+                  fontSize: 30,
                 ),
               ),
               Divider(),
@@ -120,6 +120,7 @@ class _TodoListState extends State<TodoList> {
                 ),
                 children: [
                   TextField(
+                    
                     controller: _toDoController,
                     style: TextStyle(
                       fontSize: 18,
