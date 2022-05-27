@@ -76,6 +76,13 @@ class _TodoListState extends State<TodoList> {
                   fontSize: 30,
                 ),
               ),
+              Text(
+                'Porque em terra de pobre, o que cai do ceú é chuva e bosta de passarinho! E isso não paga as contas!',
+                style: GoogleFonts.fugazOne(
+                  color: Colors.white,
+                  fontSize: 12,
+                ),
+              ),
               Divider(),
               SizedBox(height: 20),
               Expanded(
