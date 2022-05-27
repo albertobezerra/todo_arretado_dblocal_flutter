@@ -18,6 +18,8 @@ class _TodoListState extends State<TodoList> {
   late Map<String, dynamic> _lastRemoved;
   late int _lastRemovedPos;
 
+  bool validacao = true;
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +37,7 @@ class _TodoListState extends State<TodoList> {
       _toDoController.text = '';
       newToDo['ok'] = false;
       _toDoList.add(newToDo);
+      if (_toDoController.text.isNotEmpty) {}
       _refresh();
       _saveData();
       Navigator.pop(context);
@@ -120,7 +123,6 @@ class _TodoListState extends State<TodoList> {
                 ),
                 children: [
                   TextField(
-                    
                     controller: _toDoController,
                     style: TextStyle(
                       fontSize: 18,
@@ -129,18 +131,17 @@ class _TodoListState extends State<TodoList> {
                     ),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                            width: 3, color: Colors.amberAccent),
+                        borderSide:
+                            const BorderSide(width: 3, color: Colors.pink),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 3, color: Colors.amberAccent),
+                        borderSide: BorderSide(width: 3, color: Colors.pink),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       labelText: 'Digita logo, antes que esqueça!',
                       labelStyle: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Colors.pink,
                       ),
                     ),
                   ),
@@ -149,14 +150,21 @@ class _TodoListState extends State<TodoList> {
                     height: 50,
                     width: MediaQuery.of(context).size.width,
                     child: FlatButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text('add'),
-                      color: Theme.of(context).primaryColor,
-                      textColor: Colors.white,
-                      onPressed: _addToDo,
-                    ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text('add'),
+                        color: Theme.of(context).primaryColor,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (_toDoController.text.isEmpty) {
+                            setState(() {
+                              validacao = false;
+                            });
+                          } else {
+                            _addToDo();
+                          }
+                        }),
                   ),
                 ],
               );
@@ -182,10 +190,19 @@ class _TodoListState extends State<TodoList> {
       ),
       direction: DismissDirection.startToEnd,
       child: CheckboxListTile(
-        title: Text(_toDoList[index]['title']),
+        title: Text(
+          _toDoList[index]['title'],
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         value: _toDoList[index]['ok'],
         secondary: CircleAvatar(
-          child: Icon(_toDoList[index]['ok'] ? Icons.check : Icons.error),
+          backgroundColor: Theme.of(context).primaryColor,
+          child: Icon(
+            _toDoList[index]['ok'] ? Icons.check : Icons.error,
+            color: Colors.white,
+          ),
         ),
         onChanged: (bool? c) {
           setState(() {
@@ -194,6 +211,11 @@ class _TodoListState extends State<TodoList> {
             _saveData();
           });
         },
+        checkColor: Colors.white,
+        side: BorderSide(
+          color: Colors.white,
+        ),
+        activeColor: Colors.pink,
       ),
       onDismissed: (direction) {
         setState(() {
