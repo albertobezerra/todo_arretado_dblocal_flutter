@@ -115,15 +115,22 @@ class _TodoListState extends State<TodoList> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
+                backgroundColor: Colors.black87,
                 title: Row(
                   children: [
-                    Text('Add ToDo'),
+                    Text(
+                      'Tá olhando o que?',
+                      style: GoogleFonts.fugazOne(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 20,
+                      ),
+                    ),
                     Spacer(),
                     IconButton(
                       onPressed: () => Navigator.pop(context),
                       icon: Icon(
                         Icons.cancel,
-                        color: Colors.black,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ],
@@ -131,6 +138,7 @@ class _TodoListState extends State<TodoList> {
                 children: [
                   TextField(
                     controller: _toDoController,
+                    textCapitalization: TextCapitalization.sentences,
                     style: TextStyle(
                       fontSize: 12,
                       height: 1.5,
@@ -158,11 +166,11 @@ class _TodoListState extends State<TodoList> {
                     width: MediaQuery.of(context).size.width,
                     child: FlatButton(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Text('add'),
+                        child: Text('Tem que apertar aqui!'),
                         color: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
+                        textColor: Colors.black,
                         onPressed: () {
                           if (_toDoController.text.isEmpty) {
                             setState(() {
