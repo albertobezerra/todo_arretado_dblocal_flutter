@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -91,7 +92,13 @@ class _TodoListState extends State<TodoList> {
                   itemBuilder: buildItem,
                 ),
               ),
-              SizedBox(height: 120),
+              Container(
+                height: 60,
+                color: Colors.amberAccent,
+              ),
+              SizedBox(
+                height: 60,
+              )
             ],
           ),
         ),
