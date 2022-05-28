@@ -83,15 +83,15 @@ class _TodoListState extends State<TodoList> {
                   fontSize: 12,
                 ),
               ),
-              Divider(),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
-                  padding: EdgeInsets.only(top: 10),
+                  // padding: EdgeInsets.only(top: 10),
                   itemCount: _toDoList.length,
                   itemBuilder: buildItem,
                 ),
               ),
+              SizedBox(height: 120),
             ],
           ),
         ),
@@ -132,7 +132,7 @@ class _TodoListState extends State<TodoList> {
                   TextField(
                     controller: _toDoController,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 12,
                       height: 1.5,
                       color: Colors.pink,
                     ),
@@ -186,7 +186,9 @@ class _TodoListState extends State<TodoList> {
     return Dismissible(
       key: Key(DateTime.now().microsecondsSinceEpoch.toString()),
       background: Container(
-        color: Colors.red,
+        padding: EdgeInsets.all(4),
+        margin: EdgeInsets.only(top: 10),
+        color: Color(0xFF838383),
         child: Align(
           alignment: Alignment(-0.9, 0),
           child: Icon(
@@ -196,33 +198,47 @@ class _TodoListState extends State<TodoList> {
         ),
       ),
       direction: DismissDirection.startToEnd,
-      child: CheckboxListTile(
-        title: Text(
-          _toDoList[index]['title'],
-          style: TextStyle(
+      child: Container(
+        padding: EdgeInsets.all(4),
+        margin: EdgeInsets.only(top: 10),
+        color: Theme.of(context).primaryColor,
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(10),
+        //   border: Border.all(
+        //     color: Theme.of(context).primaryColor,
+        //     width: 2,
+        //   ),
+        // ),
+        child: CheckboxListTile(
+          title: Text(
+            _toDoList[index]['title'],
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+          value: _toDoList[index]['ok'],
+          // secondary: CircleAvatar(
+          //   backgroundColor: Theme.of(context).primaryColor,
+          //   child: Icon(
+          //     _toDoList[index]['ok'] ? Icons.check : Icons.error,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          onChanged: (bool? c) {
+            setState(() {
+              _toDoList[index]['ok'] = c;
+              _refresh();
+              _saveData();
+            });
+          },
+
+          checkColor: Colors.white,
+          side: BorderSide(
             color: Colors.white,
           ),
+          activeColor: Colors.pink,
         ),
-        value: _toDoList[index]['ok'],
-        secondary: CircleAvatar(
-          backgroundColor: Theme.of(context).primaryColor,
-          child: Icon(
-            _toDoList[index]['ok'] ? Icons.check : Icons.error,
-            color: Colors.white,
-          ),
-        ),
-        onChanged: (bool? c) {
-          setState(() {
-            _toDoList[index]['ok'] = c;
-            _refresh();
-            _saveData();
-          });
-        },
-        checkColor: Colors.white,
-        side: BorderSide(
-          color: Colors.white,
-        ),
-        activeColor: Colors.pink,
       ),
       onDismissed: (direction) {
         setState(() {
