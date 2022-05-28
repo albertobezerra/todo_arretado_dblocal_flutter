@@ -100,9 +100,7 @@ class _TodoListState extends State<TodoList> {
       floatingActionButton: FloatingActionButton(
         child: Text(
           '+',
-          style: TextStyle(
-            fontSize: 20,
-          ),
+          style: TextStyle(fontSize: 20, color: Colors.black),
         ),
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {
@@ -142,21 +140,22 @@ class _TodoListState extends State<TodoList> {
                     style: TextStyle(
                       fontSize: 12,
                       height: 1.5,
-                      color: Colors.pink,
+                      color: Theme.of(context).primaryColor,
                     ),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            const BorderSide(width: 3, color: Colors.pink),
+                        borderSide: const BorderSide(
+                            width: 3, color: Color.fromARGB(255, 64, 255, 182)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(width: 3, color: Colors.pink),
+                        borderSide: BorderSide(
+                            width: 3, color: Color.fromARGB(255, 64, 255, 182)),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       labelText: 'Digita logo, antes que esqueça!',
                       labelStyle: TextStyle(
-                        color: Colors.pink,
+                        color: Theme.of(context).primaryColor,
                       ),
                     ),
                   ),
@@ -221,7 +220,7 @@ class _TodoListState extends State<TodoList> {
           title: Text(
             _toDoList[index]['title'],
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 18,
             ),
           ),
@@ -241,11 +240,12 @@ class _TodoListState extends State<TodoList> {
             });
           },
 
-          checkColor: Colors.white,
+          checkColor: Theme.of(context).primaryColor,
           side: BorderSide(
-            color: Colors.white,
+            color: Colors.black,
+            width: 2,
           ),
-          activeColor: Colors.pink,
+          activeColor: Colors.black,
         ),
       ),
       onDismissed: (direction) {
@@ -256,10 +256,17 @@ class _TodoListState extends State<TodoList> {
           _saveData();
 
           final snack = SnackBar(
-            content:
-                Text('Terminasse isso \'${_lastRemoved['title']}\' mesmo?'),
+            backgroundColor: Theme.of(context).primaryColor,
+            content: Text(
+              'Terminasse mesmo?',
+              style: TextStyle(
+                color: Colors.black,
+              ),
+            ),
+            // Text('Terminasse isso \'${_lastRemoved['title']}\' mesmo?'),
             action: SnackBarAction(
-                label: 'Terminei não',
+                label: 'Terminei não!',
+                textColor: Colors.black,
                 onPressed: () {
                   setState(() {
                     _toDoList.insert(_lastRemovedPos, _lastRemoved);

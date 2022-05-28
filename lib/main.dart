@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const TodoList(),
       theme: ThemeData(
-        primaryColor: Colors.pink,
+        primaryColor: Color.fromARGB(255, 64, 255, 182),
         scaffoldBackgroundColor: Colors.grey[900],
       ),
     );
