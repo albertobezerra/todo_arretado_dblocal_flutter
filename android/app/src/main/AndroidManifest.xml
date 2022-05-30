@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.todo_arretado_dblocal">
+    package="equipebezerradasilva.todo_arretado_dblocal">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -34,8 +34,12 @@
             android:name="flutterEmbedding"
             android:value="2" />
         
-        <meta-data
+        <!-- <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7979689703488774~5843435537"/>
+            android:value="ca-app-pub-7979689703488774~5843435537"/> -->
+
+            <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7979689703488774~3810164338"/>
     </application>
 </manifest>

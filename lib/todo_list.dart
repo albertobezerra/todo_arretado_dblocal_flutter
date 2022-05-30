@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -64,42 +64,51 @@ class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(25),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Vai te ocupar!',
-                style: GoogleFonts.fugazOne(
-                  color: Colors.white,
-                  fontSize: 30,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            opacity: 0.1,
+            image: NetworkImage(
+                'https://cdn.pixabay.com/photo/2020/04/02/22/05/home-office-4996834_960_720.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(25),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Vai te ocupar!',
+                  style: GoogleFonts.fugazOne(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 30,
+                  ),
                 ),
-              ),
-              Text(
-                'Porque em terra de pobre, o que cai do ceú é chuva e bosta de passarinho! E isso não paga as contas!',
-                style: GoogleFonts.fugazOne(
-                  color: Colors.white,
-                  fontSize: 12,
+                Text(
+                  'Porque em terra de pobre, o que cai do ceú é chuva e bosta de passarinho! E isso não paga as contas!',
+                  style: GoogleFonts.fugazOne(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 12,
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              Expanded(
-                child: ListView.builder(
-                  // padding: EdgeInsets.only(top: 10),
-                  itemCount: _toDoList.length,
-                  itemBuilder: buildItem,
+                SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    // padding: EdgeInsets.only(top: 10),
+                    itemCount: _toDoList.length,
+                    itemBuilder: buildItem,
+                  ),
                 ),
-              ),
-              Container(
-                height: 60,
-                color: Colors.amberAccent,
-              ),
-              SizedBox(
-                height: 60,
-              )
-            ],
+                Container(
+                  child: const BannerAd(size: BannerSize.ADAPTIVE),
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+              ],
+            ),
           ),
         ),
       ),

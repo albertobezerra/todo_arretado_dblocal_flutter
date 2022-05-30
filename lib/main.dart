@@ -1,10 +1,21 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_arretado_dblocal/todo_list.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:native_admob_flutter/native_admob_flutter.dart';
+import 'package:todo_arretado_dblocal/splash.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+String get bannerAdUnitId {
+  /// Always test with test ads
+  if (kDebugMode) {
+    return MobileAds.bannerAdTestUnitId;
+  } else {
+    return 'ca-app-pub-7979689703488774/4117286099';
+  }
+}
+
+Future<void> main() async {
+  await MobileAds.initialize(
+    bannerAdUnitId: bannerAdUnitId,
+  );
   runApp(const MyApp());
 }
 
@@ -15,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const TodoList(),
+      home: const Spalsh(),
       theme: ThemeData(
         primaryColor: Color.fromARGB(255, 64, 255, 182),
         scaffoldBackgroundColor: Colors.grey[900],
