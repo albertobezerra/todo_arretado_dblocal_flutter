@@ -8,7 +8,7 @@ String get bannerAdUnitId {
   if (kDebugMode) {
     return MobileAds.bannerAdTestUnitId;
   } else {
-    return 'ca-app-pub-7979689703488774/4117286099';
+    return 'ca-app-pub-7979689703488774/7359681271';
   }
 }
 
