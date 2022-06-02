@@ -1,4 +1,4 @@
-package com.example.todo_arretado_dblocal
+package equipebezerradasilva.todo_arretado_dblocal
 
 import io.flutter.embedding.android.FlutterActivity
 
