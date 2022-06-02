@@ -12,8 +12,6 @@ String get bannerAdUnitId {
   }
 }
 
-// Para atualizar o readme
-
 Future<void> main() async {
   await MobileAds.initialize(
     bannerAdUnitId: bannerAdUnitId,
